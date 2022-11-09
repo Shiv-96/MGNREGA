@@ -1,4 +1,4 @@
-package com.project.utility;
+package com.mgnrega.utility;
 
 import java.sql.Connection;
 
