@@ -21,10 +21,40 @@ public class Start {
 			
 			if(choice.equals("3")) {
 				System.out.println("Thank you for using our application");
-				break;
+				x = false;
+			}
+			else if(choice.equals("1")) {
+				System.out.println("You want to login as a BDO");
+				
+				String message = LoginForBDO.loginAsABDO();
+				
+				System.out.println(message);
+				boolean y = true;
+				while(y) {
+					System.out.println("Press 1 for Creating a new Project");
+					System.out.println("Press 2 for seeing the list of project");
+					System.out.println("Press 3 for Creating a new Gram Panchayat Member");
+					System.out.println("Press 4 for Seeing the list of Gram Panchayat Member");
+					System.out.println("Press 5 for Allocating a Project to Gram Panchayat Member");
+					System.out.println("Press 6 for Seeing the list of Employee working on that project and their wages");
+					System.out.println("Press 7 for Exit...");
+					String bdoChoice = sc.next();
+					
+					if(bdoChoice.equals("7")) {
+						y = false;
+					}
+					else {
+						System.out.println("Please choose correct option");
+					}
+				}
+				
+			}
+			else if(choice.equals("2")) {
+				System.out.println("You want to login as a Gram Panchayat Member");
 			}
 			else {
 				System.out.println("Please enter correct option");
+				
 			}
 			
 		}
