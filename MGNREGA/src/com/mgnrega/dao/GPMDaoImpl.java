@@ -2,11 +2,15 @@ package com.mgnrega.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mgnrega.exception.GPMException;
 import com.mgnrega.model.GPM;
 import com.mgnrega.utility.DBUtill;
+import com.mysql.cj.protocol.Resultset;
 
 public class GPMDaoImpl implements GPMDao {
 
@@ -36,6 +40,47 @@ public class GPMDaoImpl implements GPMDao {
 		}
 		
 		return message;
+	}
+
+	@Override
+	public List<GPM> getAllGramPanchayatMemeber() throws GPMException {
+		
+		List<GPM> gpms = new ArrayList<>();
+		
+		try (Connection conn = DBUtill.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from gpm");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt("Member_ID");
+				String name = rs.getString("Member_Name");
+				String vill = rs.getString("Memeber_Village");
+				String user = rs.getString("Username");
+				String pass = rs.getString("Password");
+				
+				GPM gpm = new GPM(id, name, vill, user, pass);
+				
+				gpms.add(gpm);
+				
+			}
+			
+			if(gpms.size() == 0) {
+				throw new GPMException("You don't have any Gram Panchayat Member");
+			}
+			
+			
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+			
+		}
+		
+		
+		return gpms;
+		
 	}
 	
 	
