@@ -10,6 +10,7 @@ public class Start {
 		System.out.println("===============================");
 		Scanner sc = new Scanner(System.in);
 		boolean x = true;
+		boolean y = true;
 		
 		while(x) {
 			
@@ -28,11 +29,14 @@ public class Start {
 				
 				String name = LoginForBDO.loginAsABDO();
 				
-				if(name.equalsIgnoreCase("invalid credential"))
+				if(name.equalsIgnoreCase("invalid credential")) {
 					System.out.println(name);
-				else
+					y = false;
+				}
+				else {
 					System.out.println("Welcome "+name);
-				boolean y = true;
+					y = true;
+				}
 				while(y) {
 					System.out.println("Press 1 for Creating a new Project");
 					System.out.println("Press 2 for seeing the list of project");
@@ -43,11 +47,18 @@ public class Start {
 					System.out.println("Press 7 for Exit...");
 					String bdoChoice = sc.next();
 					
+					
 					if(bdoChoice.equals("7")) {
 						y = false;
 					}
 					else if(bdoChoice.equals("1")) {
 						CreateProject.createProjectUndeBDO(name);
+					}
+					else if(bdoChoice.equals("2")) {
+						GetAllProject.getListPfProject();
+					}
+					else if(bdoChoice.equals("3")) {
+						CreateGramPanchayatMember.createGramPanchayatMember();
 					}
 					else {
 						System.out.println("Please choose correct option");
