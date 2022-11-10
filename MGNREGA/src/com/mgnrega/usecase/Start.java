@@ -26,9 +26,12 @@ public class Start {
 			else if(choice.equals("1")) {
 				System.out.println("You want to login as a BDO");
 				
-				String message = LoginForBDO.loginAsABDO();
+				String name = LoginForBDO.loginAsABDO();
 				
-				System.out.println(message);
+				if(name.equalsIgnoreCase("invalid credential"))
+					System.out.println(name);
+				else
+					System.out.println("Welcome "+name);
 				boolean y = true;
 				while(y) {
 					System.out.println("Press 1 for Creating a new Project");
@@ -42,6 +45,9 @@ public class Start {
 					
 					if(bdoChoice.equals("7")) {
 						y = false;
+					}
+					else if(bdoChoice.equals("1")) {
+						CreateProject.createProjectUndeBDO(name);
 					}
 					else {
 						System.out.println("Please choose correct option");

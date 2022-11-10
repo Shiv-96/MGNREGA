@@ -3,6 +3,7 @@ package com.mgnrega.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.mgnrega.exception.BDOException;
 import com.mgnrega.utility.DBUtill;
@@ -31,9 +32,14 @@ public class BDODaoImpl implements BDODao {
 				
 				bdo = new BDO(user, pass, name);
 			}
+			else {
+				throw new BDOException("Invalid Credential");
+			}
 			
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			
+			e.getMessage();
+			
 		}
 		
 		return bdo;

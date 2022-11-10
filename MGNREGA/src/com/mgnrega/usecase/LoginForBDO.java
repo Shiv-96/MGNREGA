@@ -25,11 +25,11 @@ public class LoginForBDO {
 		try {
 			BDO bdo = dao.loginBDO(user, pass);
 			
-			message = "Welcome "+bdo.getName();
+			message = bdo.getName();
 			
 		} catch (BDOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			message = e.getMessage();
 		}
 		
 		
