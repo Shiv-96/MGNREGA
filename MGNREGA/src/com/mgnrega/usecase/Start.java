@@ -60,6 +60,9 @@ public class Start {
 					else if(bdoChoice.equals("3")) {
 						CreateGramPanchayatMember.createGramPanchayatMember();
 					}
+					else if(bdoChoice.equals("4")) {
+						GetAllGramPanchayatMember.getTheGramPanchayatMemeber();
+					}
 					else {
 						System.out.println("Please choose correct option");
 					}
