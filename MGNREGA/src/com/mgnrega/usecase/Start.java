@@ -33,9 +33,10 @@ public class Start {
 					System.out.println(name);
 					y = false;
 				}
-				else
+				else {
 					System.out.println("Welcome "+name);
-				
+					y = true;
+				}
 				while(y) {
 					System.out.println("Press 1 for Creating a new Project");
 					System.out.println("Press 2 for seeing the list of project");
@@ -56,7 +57,9 @@ public class Start {
 					else if(bdoChoice.equals("2")) {
 						GetAllProject.getListPfProject();
 					}
-					
+					else if(bdoChoice.equals("3")) {
+						CreateGramPanchayatMember.createGramPanchayatMember();
+					}
 					else {
 						System.out.println("Please choose correct option");
 					}
