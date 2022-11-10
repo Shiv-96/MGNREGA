@@ -9,6 +9,8 @@ public interface GPMDao {
 	
 	public String createGramPanchayatMember(GPM gpm) throws GPMException;
 	
+	public GPM loginasAGPM(String user, String pass) throws GPMException;
+	
 	public List<GPM> getAllGramPanchayatMemeber() throws GPMException;
 	
 }

@@ -82,6 +82,48 @@ public class GPMDaoImpl implements GPMDao {
 		return gpms;
 		
 	}
+
+	@Override
+	public GPM loginasAGPM(String user, String pass) throws GPMException {
+		
+		GPM gpm = null;
+		
+		try (Connection conn = DBUtill.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from gpm where username = ? and password = ?");
+			
+			ps.setString(2, pass);
+			
+			ps.setString(1, user);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int id = rs.getInt("Member_ID");
+				String name = rs.getString("Member_Name");
+				String village = rs.getString("Memeber_Village");
+				String username = rs.getString("Username");
+				String password = rs.getString("Password");
+				
+				gpm = new GPM(id, name, village, username, password);
+				
+			}
+			else {
+				throw new GPMException("Invalid credential with Username "+user);
+			}
+			
+		} catch (SQLException e) {
+			
+			throw new GPMException(e.getMessage());
+			
+		}
+		
+		
+		
+		
+		return gpm;
+	}
 	
 	
 	
