@@ -2,7 +2,10 @@ package com.mgnrega.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mgnrega.exception.ProjectException;
 import com.mgnrega.model.Project;
@@ -39,6 +42,42 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 		
 		return message;
+	}
+
+	@Override
+	public List<Project> getAllProject() throws ProjectException {
+		
+		List<Project> projects = new ArrayList<>();
+		
+		try (Connection conn = DBUtill.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from project");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt("Project_ID");
+				String pr_name = rs.getString("Project_Name");
+				String pr_vill = rs.getString("Project_Village");
+				String pr_dist = rs.getString("Project_District");
+				
+				Project project = new Project(id, pr_name, pr_dist, pr_vill);
+				
+				projects.add(project);
+				
+			}
+			
+
+			
+		} catch (SQLException e) {
+			
+			throw new ProjectException("You don't have any Projects");
+			
+		}
+		
+		return projects;
+		
 	}
 	
 	
