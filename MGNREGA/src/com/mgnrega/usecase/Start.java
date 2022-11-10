@@ -25,7 +25,6 @@ public class Start {
 				x = false;
 			}
 			else if(choice.equals("1")) {
-				System.out.println("You want to login as a BDO");
 				
 				String name = LoginForBDO.loginAsABDO();
 				
@@ -63,6 +62,12 @@ public class Start {
 					else if(bdoChoice.equals("4")) {
 						GetAllGramPanchayatMember.getTheGramPanchayatMemeber();
 					}
+					else if(bdoChoice.equals("5")) {
+						AllocateProject.allocateProjectToGPM();
+					}
+					else if(bdoChoice.equals("6")) {
+						System.out.println("You want to see the list of employee working on that project and their wages");
+					}
 					else {
 						System.out.println("Please choose correct option");
 					}
@@ -70,7 +75,11 @@ public class Start {
 				
 			}
 			else if(choice.equals("2")) {
-				System.out.println("You want to login as a Gram Panchayat Member");
+				
+				String name = LoginForGPM.loginAsAGPM();
+				
+				System.out.println("Welcome "+name);
+				
 			}
 			else {
 				System.out.println("Please enter correct option");
