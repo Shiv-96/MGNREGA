@@ -8,7 +8,7 @@ import com.mgnrega.model.Employee;
 
 public class CreateNewEmployee {
 	
-	public static String createEmployee() {
+	public static String createEmployee(int id, String gpmName) {
 		
 		String name = "";
 		
@@ -27,7 +27,7 @@ public class CreateNewEmployee {
 		
 		EmployeeDao dao = new EmployeeDaoImpl();
 		
-		name = dao.createNewEmployee(employee);
+		name = dao.createNewEmployee(employee, id, gpmName);
 		
 		
 		return name;

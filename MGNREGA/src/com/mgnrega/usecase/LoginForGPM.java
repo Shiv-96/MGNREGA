@@ -9,9 +9,9 @@ import com.mgnrega.model.GPM;
 
 public class LoginForGPM {
 	
-	public static String loginAsAGPM() throws GPMException {
+	public static GPM loginAsAGPM() throws GPMException {
 		
-		String name = "";
+		GPM gpm = new GPM();
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -25,16 +25,15 @@ public class LoginForGPM {
 		
 		try {
 			
-			GPM gpm = dao.loginasAGPM(username, password);
+			gpm = dao.loginasAGPM(username, password);
 			
-			name = gpm.getGpmName();
 			
 		} catch (Exception e) {
 			
 			throw new GPMException("Invalid Credential");
 		}
 		
-		return name;
+		return gpm;
 	}
 	
 }
