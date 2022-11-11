@@ -2,6 +2,8 @@ package com.mgnrega.usecase;
 
 import java.util.Scanner;
 
+import com.mgnrega.exception.GPMException;
+
 public class Start {
 	
 	public static void main(String[] args) {
@@ -11,6 +13,7 @@ public class Start {
 		Scanner sc = new Scanner(System.in);
 		boolean x = true;
 		boolean y = true;
+		boolean z = true;
 		
 		while(x) {
 			
@@ -76,9 +79,39 @@ public class Start {
 			}
 			else if(choice.equals("2")) {
 				
-				String name = LoginForGPM.loginAsAGPM();
-				
-				System.out.println("Welcome "+name);
+				String name;
+				try {
+					name = LoginForGPM.loginAsAGPM();
+					System.out.println("Welcome "+name);
+					
+					while(z) {
+						
+						System.out.println("Press 1 for Creating a new Employee");
+						System.out.println("Press 2 for seeing the list of Employee Details");
+						System.out.println("Press 3 for Assign a employee to a Project");
+						System.out.println("Press 4 for seeing the total number of days Employee worked in a project and their wages");
+						System.out.println("Press 5 for Exit.....!!!");
+						
+						String gpmChoice = sc.next();
+						
+						if(gpmChoice.equals("5")) {
+							z = false;
+							System.out.println("Thank you "+name);
+							System.out.println("See you again...");
+						}
+						if(gpmChoice.equals("1")) {
+							String xyz = CreateNewEmployee.createEmployee();
+							
+							System.out.println(xyz);
+						}
+						
+					}
+					
+					
+				} catch (GPMException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 				
 			}
 			else {
