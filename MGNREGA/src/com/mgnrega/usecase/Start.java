@@ -154,6 +154,17 @@ public class Start {
 							z = true;
 							x = true;
 							
+							GetAllEmployee.getAllEmployee(gpm.getGpmId(), gpm.getGpmName());
+							
+						}
+						else if(gpmChoice.equals("3")) {
+							
+							x = true;
+							y = true;
+							z = true;
+							
+							AllocateEmployeeToProject.allocateEmployee();
+							
 						}
 						
 					}
