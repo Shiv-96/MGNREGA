@@ -149,6 +149,12 @@ public class Start {
 							z = true;
 							x = true;
 						}
+						else if(gpmChoice.equals("2")) {
+							y = true;
+							z = true;
+							x = true;
+							
+						}
 						
 					}
 					
