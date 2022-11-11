@@ -96,7 +96,7 @@ public class BDODaoImpl implements BDODao {
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			
 			throw new ProjectException(e.getMessage());
 		}
