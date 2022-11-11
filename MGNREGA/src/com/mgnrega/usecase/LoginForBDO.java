@@ -9,8 +9,8 @@ import com.project.model.BDO;
 
 public class LoginForBDO {
 	
-	public static String loginAsABDO() {
-		String message = null;
+	public static BDO loginAsABDO() throws BDOException {
+		BDO bdo = new BDO();
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -23,17 +23,16 @@ public class LoginForBDO {
 		BDODao dao = new BDODaoImpl();
 		
 		try {
-			BDO bdo = dao.loginBDO(user, pass);
+			bdo = dao.loginBDO(user, pass);
 			
-			message = bdo.getName();
 			
-		} catch (BDOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			message = e.getMessage();
+			throw new BDOException("Invalid Credential");
 		}
 		
 		
-		return message;
+		return bdo;
 	}
 	
 }
