@@ -9,7 +9,7 @@ import com.mgnrega.model.GPM;
 
 public class LoginForGPM {
 	
-	public static String loginAsAGPM() {
+	public static String loginAsAGPM() throws GPMException {
 		
 		String name = "";
 		
@@ -29,9 +29,9 @@ public class LoginForGPM {
 			
 			name = gpm.getGpmName();
 			
-		} catch (GPMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			
+			throw new GPMException("Invalid Credential");
 		}
 		
 		return name;
