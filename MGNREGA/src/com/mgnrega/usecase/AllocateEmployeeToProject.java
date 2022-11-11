@@ -2,6 +2,9 @@ package com.mgnrega.usecase;
 
 import java.util.Scanner;
 
+import com.mgnrega.dao.GPMDao;
+import com.mgnrega.dao.GPMDaoImpl;
+
 public class AllocateEmployeeToProject {
 
 	public static void allocateEmployee() {
@@ -13,6 +16,18 @@ public class AllocateEmployeeToProject {
 		
 		System.out.println("Enter Project ID : ");
 		int projectID = sc.nextInt();
+		
+		GPMDao dao = new GPMDaoImpl();
+		
+		try {
+			
+			String result = dao.allocateEmployeeToProject(empID, projectID);
+			
+			System.out.println(result);
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
 	}
 
