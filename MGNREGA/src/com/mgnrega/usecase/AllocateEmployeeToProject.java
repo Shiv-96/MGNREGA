@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import com.mgnrega.dao.GPMDao;
 import com.mgnrega.dao.GPMDaoImpl;
+import com.mgnrega.model.Employee;
 
 public class AllocateEmployeeToProject {
 
-	public static void allocateEmployee(int memberID) {
+	public static void allocateEmployee(int memberID, Employee employee) {
 		
 		Scanner sc = new Scanner(System.in);
 		

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.mgnrega.exception.BDOException;
 import com.mgnrega.exception.GPMException;
+import com.mgnrega.model.Employee;
 import com.mgnrega.model.GPM;
 import com.project.model.BDO;
 
@@ -133,11 +134,14 @@ public class Start {
 						String gpmChoice = sc.next();
 						
 						if(gpmChoice.equals("5")) {
+							
+							System.out.println("Thank you "+gpmName);
+							System.out.println("See you again...");
+							
 							z = false;
 							x = true;
 							y = true;
-							System.out.println("Thank you "+gpmName);
-							System.out.println("See you again...");
+							
 						}
 						if(gpmChoice.equals("1")) {
 							
@@ -164,7 +168,9 @@ public class Start {
 							y = true;
 							z = true;
 							int gpmId = gpm.getGpmId();
-							AllocateEmployeeToProject.allocateEmployee(gpmId);
+							Employee employee = new Employee();
+							
+							AllocateEmployeeToProject.allocateEmployee(gpmId, employee);
 							
 						}
 						else if(gpmChoice.equals("4")) {
@@ -173,7 +179,7 @@ public class Start {
 							y = true;
 							z = true;
 							
-							NumberOfDaysHeWorked.numberOfDaysWorked();
+							NumberOfDaysHeWorked.numberOfDaysWorked(gpm.getGpmId());
 							
 						}
 					}

@@ -154,13 +154,15 @@ public class GPMDaoImpl implements GPMDao {
 					
 					String employeeName = rs2.getString("Employee_Name");
 					
-					PreparedStatement ps3 = conn.prepareStatement("insert into Employee_Project values (?, ?, ?, ?, ?)");
+					PreparedStatement ps3 = conn.prepareStatement("insert into Employee_Project values (?, ?, ?, ?, ?, ?, ?)");
 					
 					ps3.setInt(2, projectID);
 					ps3.setInt(1, empID);
 					ps3.setInt(3, days);
 					ps3.setInt(4, wages);
 					ps3.setInt(5, memberID);
+					ps3.setString(6, employeeName);
+					ps3.setString(7, projectName);
 					
 					int x = ps3.executeUpdate();
 					
@@ -182,6 +184,45 @@ public class GPMDaoImpl implements GPMDao {
 		} catch (SQLException e) {
 			
 			throw new ProjectException(e.getMessage());
+			
+		}
+		
+		
+		return message;
+		
+	}
+
+	@Override
+	public String numberOfDaysWorked(int id) throws GPMException {
+		
+		String message = "No work";
+		
+		try (Connection conn = DBUtill.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select employeeID, employee_Name, Numer_Of_Days, Wages_Per_Days from employee_project where Member_ID = ?");
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			boolean flag = true;
+			while(rs.next()) {
+				
+				String name = rs.getString("employee_Name");
+				int days = rs.getInt("Numer_Of_Days");
+				int wages = rs.getInt("Wages_Per_Days");
+				
+				message = name+" has worked "+days+" days with "+wages+"RS per day";
+				flag = false;
+				
+			}
+			
+			if(flag == true) {
+				throw new GPMException("No employee is present for you");
+			}
+			
+		} catch (SQLException e) {
+			
+			message = e.getMessage();
 			
 		}
 		
