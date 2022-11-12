@@ -1,5 +1,7 @@
 package com.mgnrega.usecase;
 
+import java.util.List;
+
 import com.mgnrega.dao.GPMDao;
 import com.mgnrega.dao.GPMDaoImpl;
 import com.mgnrega.exception.GPMException;
@@ -12,9 +14,15 @@ public class NumberOfDaysHeWorked {
 		
 		try {
 			
-			String message = dao.numberOfDaysWorked(id);
+			List<String> messages = dao.numberOfDaysWorked(id);
 			
-			System.out.println(message);
+			messages.stream().forEach(message -> {
+				
+				System.out.println(message);
+				
+			});
+			
+			System.out.println("============================");
 			
 		} catch (GPMException e) {
 			System.out.println(e.getMessage());

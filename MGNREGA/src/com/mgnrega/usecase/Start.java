@@ -66,48 +66,36 @@ public class Start {
 					
 						if(bdoChoice.equals("7")) {
 							y = false;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("1")) {
 							CreateProject.createProjectUndeBDO(name);
 							y = true;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("2")) {
 							GetAllProject.getListPfProject();
 							y = true;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("3")) {
 							CreateGramPanchayatMember.createGramPanchayatMember();
 							y = true;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("4")) {
 							GetAllGramPanchayatMember.getTheGramPanchayatMemeber();
 							y = true;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("5")) {
 							AllocateProject.allocateProjectToGPM();
 							y = true;
-							x = true;
-							z = true;
 						}
 						else if(bdoChoice.equals("6")) {
 							System.out.println("You want to see the list of employee working on that project and their wages");
 							y = true;
-							x = true;
-							z = true;
 						}
 						else {
 							System.out.println("Please choose correct option");
 						}
+						x = true;
+						z = true;
 					}
 				}catch (BDOException e) {
 					// TODO Auto-generated catch block
