@@ -193,9 +193,9 @@ public class GPMDaoImpl implements GPMDao {
 	}
 
 	@Override
-	public String numberOfDaysWorked(int id) throws GPMException {
+	public List<String> numberOfDaysWorked(int id) throws GPMException {
 		
-		String message = "No work";
+		List<String> messages = new ArrayList<>();
 		
 		try (Connection conn = DBUtill.provideConnection()) {
 			
@@ -211,7 +211,9 @@ public class GPMDaoImpl implements GPMDao {
 				int days = rs.getInt("Numer_Of_Days");
 				int wages = rs.getInt("Wages_Per_Days");
 				
-				message = name+" has worked "+days+" days with "+wages+"RS per day";
+				String message = name+" has worked "+days+" days with "+wages+"RS per day";
+				
+				messages.add(message);
 				flag = false;
 				
 			}
@@ -222,12 +224,12 @@ public class GPMDaoImpl implements GPMDao {
 			
 		} catch (SQLException e) {
 			
-			message = e.getMessage();
+			throw new GPMException(e.getMessage());
 			
 		}
 		
 		
-		return message;
+		return messages;
 		
 	}
 	
