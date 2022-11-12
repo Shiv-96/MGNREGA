@@ -20,7 +20,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		try (Connection conn = DBUtill.provideConnection()) {
 			
-			PreparedStatement ps = conn.prepareStatement("insert into employee (Employee_Name, Employee_Address, GPM_ID, GPM_Name) values (?, ?, ?, ?) ");
+			PreparedStatement ps = conn.prepareStatement("insert into employee (Employee_Name, Employee_Address, GPM_ID, GPM_Name) values (?, ?, ?, ?) where  ");
 			
 			ps.setString(1, employee.getEmployeeName());
 			ps.setString(2, employee.getEmployeeAddress());

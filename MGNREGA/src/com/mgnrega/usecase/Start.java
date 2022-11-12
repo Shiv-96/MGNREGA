@@ -66,6 +66,8 @@ public class Start {
 					
 						if(bdoChoice.equals("7")) {
 							y = false;
+							System.out.println("Thank you "+name);
+							System.out.println("See you again....");
 						}
 						else if(bdoChoice.equals("1")) {
 							CreateProject.createProjectUndeBDO(name);
