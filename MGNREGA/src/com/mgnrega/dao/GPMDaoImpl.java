@@ -128,7 +128,7 @@ public class GPMDaoImpl implements GPMDao {
 	}
 
 	@Override
-	public String allocateEmployeeToProject(int empID, int projectID) throws EmployeeException, ProjectException {
+	public String allocateEmployeeToProject(int empID, int projectID, int days, int wages, int memberID) throws EmployeeException, ProjectException {
 		
 		String message = "Not Allocated.....!!";
 		
@@ -154,10 +154,13 @@ public class GPMDaoImpl implements GPMDao {
 					
 					String employeeName = rs2.getString("Employee_Name");
 					
-					PreparedStatement ps3 = conn.prepareStatement("insert into Employee_Project values (?, ?)");
+					PreparedStatement ps3 = conn.prepareStatement("insert into Employee_Project values (?, ?, ?, ?, ?)");
 					
 					ps3.setInt(2, projectID);
 					ps3.setInt(1, empID);
+					ps3.setInt(3, days);
+					ps3.setInt(4, wages);
+					ps3.setInt(5, memberID);
 					
 					int x = ps3.executeUpdate();
 					

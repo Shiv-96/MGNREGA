@@ -163,11 +163,19 @@ public class Start {
 							x = true;
 							y = true;
 							z = true;
-							
-							AllocateEmployeeToProject.allocateEmployee();
+							int gpmId = gpm.getGpmId();
+							AllocateEmployeeToProject.allocateEmployee(gpmId);
 							
 						}
-						
+						else if(gpmChoice.equals("4")) {
+							
+							x = true; 
+							y = true;
+							z = true;
+							
+							NumberOfDaysHeWorked.numberOfDaysWorked();
+							
+						}
 					}
 					
 					

@@ -15,6 +15,8 @@ public interface GPMDao {
 	
 	public List<GPM> getAllGramPanchayatMemeber() throws GPMException;
 	
-	public String allocateEmployeeToProject(int empID, int projectID) throws EmployeeException, ProjectException;
+	public String allocateEmployeeToProject(int empID, int projectID, int days, int wages, int memberId) throws EmployeeException, ProjectException;
+	
+//	public String numberOfDaysWorked(int emplyeeID) throws GPMException;
 	
 }
