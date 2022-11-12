@@ -17,6 +17,6 @@ public interface GPMDao {
 	
 	public String allocateEmployeeToProject(int empID, int projectID, int days, int wages, int memberId) throws EmployeeException, ProjectException;
 	
-//	public String numberOfDaysWorked(int emplyeeID) throws GPMException;
+	public String numberOfDaysWorked(int id) throws GPMException;
 	
 }
