@@ -144,9 +144,10 @@ public class GPMDaoImpl implements GPMDao {
 				
 				String projectName = rs1.getString("Project_Name");
 				
-				PreparedStatement ps2 = conn.prepareStatement("select * from employee where Employee_ID = ?");
+				PreparedStatement ps2 = conn.prepareStatement("select * from employee where Employee_ID = ? and GPM_ID = ?");
 				
 				ps2.setInt(1, empID);
+				ps2.setInt(2, memberID);
 				
 				ResultSet rs2 = ps2.executeQuery();
 				

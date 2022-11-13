@@ -1,5 +1,7 @@
 package com.mgnrega.usecase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -17,8 +19,8 @@ public class Start {
 		System.out.println("===============================");
 		Scanner sc = new Scanner(System.in);
 		boolean x = true;
-		boolean y = true;
-		boolean z = true;
+//		boolean y = true;
+//		boolean z = true;
 		
 		while(x) {
 			
@@ -39,20 +41,17 @@ public class Start {
 					bdo = LoginForBDO.loginAsABDO();
 				
 				
-					String name = bdo.getName();
+					String name1 = bdo.getName();
 				
-					if(name.equalsIgnoreCase("invalid credential")) {
-						System.out.println(name);
-						y = false;
-						x = true;
-						z = true;
+					if(name1.equalsIgnoreCase("invalid credential")) {
+						System.out.println(name1);
+						
 					}
 					else {
-						System.out.println("Welcome "+name);
-						y = true;
-						x = true;
-						z = true;
+						System.out.println("Welcome "+name1);
+						
 					}
+					boolean y = true;
 					while(y) {
 						System.out.println("Press 1 for Creating a new Project");
 						System.out.println("Press 2 for seeing the list of project");
@@ -66,38 +65,32 @@ public class Start {
 					
 						if(bdoChoice.equals("7")) {
 							y = false;
-							System.out.println("Thank you "+name);
+							System.out.println("Thank you "+name1);
 							System.out.println("See you again....");
 						}
 						else if(bdoChoice.equals("1")) {
-							CreateProject.createProjectUndeBDO(name);
-							y = true;
+							CreateProject.createProjectUndeBDO(name1);
 						}
 						else if(bdoChoice.equals("2")) {
 							GetAllProject.getListPfProject();
-							y = true;
 						}
 						else if(bdoChoice.equals("3")) {
 							CreateGramPanchayatMember.createGramPanchayatMember();
-							y = true;
 						}
 						else if(bdoChoice.equals("4")) {
 							GetAllGramPanchayatMember.getTheGramPanchayatMemeber();
-							y = true;
 						}
 						else if(bdoChoice.equals("5")) {
 							AllocateProject.allocateProjectToGPM();
-							y = true;
 						}
 						else if(bdoChoice.equals("6")) {
-							System.out.println("You want to see the list of employee working on that project and their wages");
-							y = true;
+							
+							ListOfEmployeeWorkingProject.listOfEmployee();
+							
 						}
 						else {
 							System.out.println("Please choose correct option");
 						}
-						x = true;
-						z = true;
 					}
 				}catch (BDOException e) {
 					// TODO Auto-generated catch block
@@ -105,7 +98,7 @@ public class Start {
 				}
 			}
 			else if(choice.equals("2")) {
-				
+				boolean z = true;
 				try {
 					GPM gpm = LoginForGPM.loginAsAGPM();
 					
@@ -129,8 +122,6 @@ public class Start {
 							System.out.println("See you again...");
 							
 							z = false;
-							x = true;
-							y = true;
 							
 						}
 						if(gpmChoice.equals("1")) {
@@ -140,23 +131,14 @@ public class Start {
 							String employeeName = CreateNewEmployee.createEmployee(gpmID, gpmName);
 							
 							System.out.println(employeeName+ " is registered by "+gpmName);
-							y = true;
-							z = true;
-							x = true;
 						}
 						else if(gpmChoice.equals("2")) {
-							y = true;
-							z = true;
-							x = true;
 							
 							GetAllEmployee.getAllEmployee(gpm.getGpmId(), gpm.getGpmName());
 							
 						}
 						else if(gpmChoice.equals("3")) {
 							
-							x = true;
-							y = true;
-							z = true;
 							int gpmId = gpm.getGpmId();
 							Employee employee = new Employee();
 							
@@ -164,10 +146,6 @@ public class Start {
 							
 						}
 						else if(gpmChoice.equals("4")) {
-							
-							x = true; 
-							y = true;
-							z = true;
 							
 							NumberOfDaysHeWorked.numberOfDaysWorked(gpm.getGpmId());
 							
