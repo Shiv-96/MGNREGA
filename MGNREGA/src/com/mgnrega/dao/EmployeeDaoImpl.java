@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.mgnrega.exception.EmployeeException;
 import com.mgnrega.model.Employee;
+import com.mgnrega.model.EmployeeDTO;
 import com.mgnrega.utility.DBUtill;
 
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -77,6 +78,40 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		
 		return employees;
+		
+	}
+
+	@Override
+	public List<EmployeeDTO> listOfAllEmployee() throws EmployeeException {
+		
+		List<EmployeeDTO> employeeDetails = new ArrayList<>();
+		
+		try (Connection conn = DBUtill.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select employee_project.employee_Name, gpm.Member_Name, employee_project.Project_Name, employee_project.Wages_Per_Days from employee_project inner join gpm on gpm.Member_ID=employee_project.Member_ID");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				String empName = rs.getString("employee_Name");
+				String gpmName = rs.getString("Member_Name");
+				String projName = rs.getString("Project_Name");
+				int wages = rs.getInt("Wages_Per_Days");
+				
+				EmployeeDTO employeeDTO = new EmployeeDTO(empName, projName, wages, gpmName);
+				
+				employeeDetails.add(employeeDTO);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			throw new EmployeeException(e.getMessage());
+			
+		}
+		
+		return employeeDetails;
 		
 	}
 
