@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.mgnrega.dao.EmployeeDao;
 import com.mgnrega.dao.EmployeeDaoImpl;
+import com.mgnrega.exception.EmployeeException;
 import com.mgnrega.model.Employee;
 
 public class CreateNewEmployee {
@@ -27,9 +28,12 @@ public class CreateNewEmployee {
 		
 		EmployeeDao dao = new EmployeeDaoImpl();
 		
-		name = dao.createNewEmployee(employee, id, gpmName);
-		
-		
+		try {
+			name = dao.createNewEmployee(employee, id, gpmName);
+		} catch (EmployeeException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 		return name;
 	}
 	

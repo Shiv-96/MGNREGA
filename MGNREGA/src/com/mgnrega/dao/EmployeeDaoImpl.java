@@ -15,13 +15,13 @@ import com.mgnrega.utility.DBUtill;
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
-	public String createNewEmployee(Employee employee, int id, String gpmName) {
+	public String createNewEmployee(Employee employee, int id, String gpmName) throws EmployeeException {
 		
-		String name = "Not Created";
+		String name = "Shiv";
 		
 		try (Connection conn = DBUtill.provideConnection()) {
 			
-			PreparedStatement ps = conn.prepareStatement("insert into employee (Employee_Name, Employee_Address, GPM_ID, GPM_Name) values (?, ?, ?, ?) where  ");
+			PreparedStatement ps = conn.prepareStatement("insert into employee (Employee_Name, Employee_Address, GPM_ID, GPM_Name) values (?, ?, ?, ?)");
 			
 			ps.setString(1, employee.getEmployeeName());
 			ps.setString(2, employee.getEmployeeAddress());
@@ -29,18 +29,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setString(4, gpmName);
 			
 			int x = ps.executeUpdate();
-			
+			System.out.println(x);
 			if(x > 0) {
 				name = employee.getEmployeeName();
 			}
-			
-			
 		} catch (SQLException e) {
 			// TODO: handle exception
+			throw new EmployeeException(e.getMessage());
 		}
-		
-		
-		
 		return name;
 	}
 

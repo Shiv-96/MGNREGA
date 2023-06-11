@@ -8,7 +8,7 @@ import com.mgnrega.model.EmployeeDTO;
 
 public interface EmployeeDao {
 	
-	public String createNewEmployee(Employee employee, int id, String gpmmname);
+	public String createNewEmployee(Employee employee, int id, String gpmmname) throws EmployeeException;
 	
 	public List<Employee> getAllEmployee(int id) throws EmployeeException;
 	
